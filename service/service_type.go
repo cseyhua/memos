@@ -1,13 +1,12 @@
 package service
 
-/*
-服务
+import (
+	"database/sql"
 
-@property
+	"github.com/labstack/echo/v5"
+)
 
-db: 数据库实例
-
-echo: web服务实例
-*/
 type Service struct {
+	Db *sql.DB    // 数据库实例
+	Eo *echo.Echo // echo实例
 }
