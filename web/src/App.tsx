@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RouterProvider } from 'react-router-dom';
+import routes from '@/routes';
+import { Suspense } from 'react';
+import styled from 'styled-components';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Loading from '@/components/Loading';
+import { Flower } from 'lucide-react';
 
+const App = styled.div`
+  min-height: 100vh;
+`;
+const Content = styled.div`
+  margin: 0 auto;
+  @media (min-width: 1280px) {
+    width: 1280px;
+  }
+  @media (min-width: 896px) {
+    width: 896px;
+  }
+`;
+
+export default function () {
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <App>
+      <Suspense
+        fallback={
+          <Loading>
+            <Flower size={128} stroke="green" />
+          </Loading>
+        }
+      >
+        <Content>
+          <RouterProvider router={routes} />
+        </Content>
+      </Suspense>
+    </App>
+  );
 }
-
-export default App
