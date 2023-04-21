@@ -1,0 +1,1 @@
+export const DAILY_TIMESTAMP = 24 * 60 * 60 * 1000  // hours x minuties x second x mill 

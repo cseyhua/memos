@@ -1,0 +1,24 @@
+.editor {
+  .edit {
+    margin: 1rem 0;
+    width: 100%;
+    height: auto;
+    border: 0;
+    max-height: 300px;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    background-color: transparent;
+    resize: none;
+    &:focus {
+      outline: none;
+    }
+    &::-webkit-scrollbar{
+      width: 4px;
+    }
+    &::-webkit-scrollbar-thumb{
+      width: 4px;
+      border-radius: 2px;
+      background-color: @primary6;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  &:first-child {
+    margin-top: 1rem;
+  }
+  .nav-item {
+    min-width: 200px;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    &:hover {
+      background-color: @primary3;
+      border-radius: 0.5rem;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .active {
+    background-color: @primary3;
+    border-radius: 0.5rem;
+  }
+}

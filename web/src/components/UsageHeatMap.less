@@ -1,0 +1,43 @@
+.heats {
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  color:@second5;
+  .top {
+    display: flex;
+    gap: 0.5rem;
+    .heats-map {
+      flex-grow: 1;
+      height: 108px;
+      display: flex;
+      align-content: space-around;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 4px;
+      .heat {
+        width: 12px;
+        height: 12px;
+        border-radius: 4px;
+        background-color: @primary5;
+      }
+      .unheat {
+        width: 12px;
+        height: 12px;
+        border-radius: 4px;
+        background-color: @primary3;
+      }
+    }
+    .day {
+      padding-right: 0.5rem;
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+  .bottom {
+    font-size: 0.75rem;
+    .utip {
+      color:@second8;
+    }
+  }
+}

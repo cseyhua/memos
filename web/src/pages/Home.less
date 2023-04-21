@@ -1,0 +1,20 @@
+.home {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  .main {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  .side {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home {
+    .side {
+      display: none;
+    }
+  }
+}

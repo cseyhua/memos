@@ -1,0 +1,38 @@
+.Root {
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+
+  .content {
+    flex-grow: 1;
+    .load {
+      width: 100%;
+      height: 100%;
+      .loader {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .Root {
+    background-color: @primary5;
+    .nav {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 896px) {
+  .Root {
+    width: 896px;
+  }
+}
+
+@media screen and (min-width: 1152px) {
+  .Root {
+    width: 1152px;
+  }
+}

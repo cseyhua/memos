@@ -1,0 +1,35 @@
+.memo-editor {
+  background-color: @primary3;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 4px 4px @primary2, -4px 4px 4px 4px @primary2,
+    -4px -4px 4px 4px @primary2, 4px -4px 4px 4px @primary2;
+
+  display: flex;
+  flex-direction: column;
+
+  .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .save {
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.125rem 0.5rem;
+      border-radius: 0.5rem;
+      background-color: @primary6;
+    }
+  }
+  &.fullscreen{
+    position: fixed;
+    top:0;
+    left: 0;
+    padding: 64px;
+    width: 100%;
+    height: 100vh;
+    .memo-edit {
+      flex-grow: 1;
+    }
+  }
+  transition: all 1s ease-in;
+}
