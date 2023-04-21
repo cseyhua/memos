@@ -7,11 +7,14 @@ const heatMapConfig = {
   rows: 7
 }
 
-type Heat = number
+type Heat = {
+  count:number,
+  timeStamp: number
+}
 
-function getInitialHeapMap(usedDay: number) {
+function getInitialHeapMap(usedDay: number, startDay:number) {
   let heats = new Array(usedDay)
-  for (let i = 0; i < usedDay; i++) heats[i] = 0
+  for (let i = 0; i < usedDay; i++) heats[i] = { count:0, timeStamp:startDay+i+1 } as Heat
   return heats
 }
 
@@ -20,15 +23,15 @@ function UsageHeatMap() {
   const usedDay = heatMapConfig.rows * (heatMapConfig.columns - 1) + today + 1
   const unusedDay = heatMapConfig.columns * heatMapConfig.rows - usedDay
 
-  const [usedHeatMap, setHeatMap] = useState<Heat[]>(getInitialHeapMap(usedDay))
-  const [unusedHeatMap, setUnHeatMap] = useState<Heat[]>(getInitialHeapMap(unusedDay))
+  const [usedHeatMap, setHeatMap] = useState<Heat[]>(getInitialHeapMap(usedDay, 0))
+  const [unusedHeatMap, setUnHeatMap] = useState<Heat[]>(getInitialHeapMap(unusedDay, usedDay+1))
 
   return (
     <div className='heats'>
       <div className='top'>
         <div className='heats-map'>
-          {usedHeatMap.length > 0 && usedHeatMap.map(() => <div className='heat'></div>)}
-          {unusedHeatMap.length > 0 && unusedHeatMap.map(() => <div className='unheat'></div>)}
+          {usedHeatMap.length > 0 && usedHeatMap.map((heat) => <div key={heat.timeStamp} className='heat'></div>)}
+          {unusedHeatMap.length > 0 && unusedHeatMap.map((heat) => <div key={heat.timeStamp} className='unheat'></div>)}
         </div>
         <div className='day'>
           <span>日</span>
