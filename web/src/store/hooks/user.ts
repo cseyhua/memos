@@ -2,6 +2,17 @@ import {} from 'react-redux'
 import store, { useAppSelector } from '..'
 import { getSelfUser, signout } from '@/fetch'
 import { setUser } from '../reducer/user'
+import { UNKNOWN_ID } from '@/utils/consts'
+
+const getUserIdFromPath = () => {
+  const pathname = window.location.pathname;
+  const userIdRegex = /^\/u\/(\d+).*/;
+  const result = pathname.match(userIdRegex);
+  if (result && result.length === 2) {
+    return Number(result[1]);
+  }
+  return undefined;
+}
 
 const convertResponseModelUser = (user: User) => {
   return {
@@ -30,17 +41,21 @@ export const doSignOut = async () => {
   await signout()
 }
 
-function useUser() {
-  const user = useAppSelector((store) => store.user)
+function useUserStore() {
+  const state = useAppSelector((store) => store.user)
 
   const isVisitedMode = ()=>{
-    return user.current == null || user.current == undefined
+    return state.current == null || state.current == undefined
   }
 
   return {
-    user:user.current,
-    isVisitedMode
+    user:state.current,
+    isVisitedMode,
+    getUserIdFromPath,
+    getCurrentId:()=>{
+      return state.current?.id ?? UNKNOWN_ID
+    }
   }
 }
 
-export default useUser
+export default useUserStore

@@ -11,10 +11,10 @@ import {
 } from 'lucide-react'
 
 import './Header.less'
-import { useUser } from '@/store/hooks'
+import { useUserStore } from '@/store/hooks'
 
 function Header() {
-  const userStore = useUser()
+  const userStore = useUserStore()
 
   const isVisitedMode = userStore.isVisitedMode()
 

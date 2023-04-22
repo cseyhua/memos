@@ -5,7 +5,7 @@ import { doSignIn, initialGlobalState } from './store/hooks'
 const customLazy = (component: any) =>
   lazy(() =>
     new Promise((r) => {
-      setTimeout(r, 2000)
+      setTimeout(r, 500)
     }).then(() => component)
   )
 

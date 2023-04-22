@@ -40,11 +40,11 @@ export const initialGlobalState = async () => {
   store.dispatch(setGlobalState(defaultGlobalState))
 }
 
-function useGlobal() {
-  const global = useAppSelector((store) => store.global)
+function useGlobalStore() {
+  const state = useAppSelector((store) => store.global)
   return {
-    appearance: global.appearance,
-    systemStatus: global.systemStatus,
+    appearance: state.appearance,
+    systemStatus: state.systemStatus,
     setAppearance: (appearance: Appearance) => {
       store.dispatch(setAppearance(appearance))
     },
@@ -52,7 +52,7 @@ function useGlobal() {
       store.dispatch(
         setGlobalState({
           systemStatus: {
-            ...global.systemStatus,
+            ...state.systemStatus,
             ...systemStatus
           }
         })
@@ -61,4 +61,4 @@ function useGlobal() {
   }
 }
 
-export default useGlobal
+export default useGlobalStore

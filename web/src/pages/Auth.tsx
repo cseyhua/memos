@@ -1,11 +1,11 @@
 import useInput from '@/hooks/useInput'
 import './Auth.less'
-import { useGlobal, doSignIn } from '@/store/hooks'
+import { useGlobalStore, doSignIn } from '@/store/hooks'
 import { signin, signup } from '@/fetch'
 import { useNavigate } from 'react-router-dom'
 
 function Auth() {
-  const { systemStatus } = useGlobal()
+  const { systemStatus } = useGlobalStore()
 
   const name = useInput()
   const pass = useInput()
