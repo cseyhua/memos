@@ -1,9 +1,11 @@
+@sw:2px;
+
 .memo-editor {
   background-color: @primary3;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  box-shadow: 4px 4px 4px 4px @primary2, -4px 4px 4px 4px @primary2,
-    -4px -4px 4px 4px @primary2, 4px -4px 4px 4px @primary2;
+  box-shadow: @sw @sw @sw @sw @primary2, -@sw @sw @sw @sw @primary2,
+    -@sw -@sw @sw @sw @primary2, @sw -@sw @sw @sw @primary2;
 
   display: flex;
   flex-direction: column;

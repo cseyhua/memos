@@ -5,7 +5,7 @@ import { doSignIn, initialGlobalState } from './store/hooks'
 const customLazy = (component: any) =>
   lazy(() =>
     new Promise((r) => {
-      setTimeout(r, 500)
+      setTimeout(r, 200)
     }).then(() => component)
   )
 
@@ -60,12 +60,12 @@ export default createBrowserRouter([
       {
         path: '/resources',
         element: <Resources />,
-        loader:userLoader
+        loader: userLoader
       },
       {
         path: '/archive',
         element: <Archive />,
-        loader:userLoader
+        loader: userLoader
       },
       {
         path: '/setting',

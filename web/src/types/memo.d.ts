@@ -1,5 +1,7 @@
 type MemoId = number;
 type RowStatus = "NORMAL" | "ARCHIVED";
+type Visibility = "PUBLIC" | "PROTECTED" | "PRIVATE";
+
 
 interface Memo {
   id: MemoId;

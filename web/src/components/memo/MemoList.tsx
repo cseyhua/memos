@@ -11,6 +11,8 @@ import { checkShouldShowMemoWithFilters } from '@/utils/filter'
 import { getTimeStampByDate } from '@/utils/datetime'
 import { LINK_REG } from '@/labs/marked/parser'
 
+import './MemoList.less'
+
 const MemoList: React.FC = () => {
   const memoStore = useMemoStore()
   const userStore = useUserStore()
@@ -135,7 +137,7 @@ const MemoList: React.FC = () => {
   }, [currentUserId])
 
   return (
-    <div>
+    <div className='memo-list-wrapper'>
       {sortedMemos.map((memo) => (
         <Memo key={`${memo.id}-${memo.createdTs}`} memo={memo}></Memo>
       ))}
