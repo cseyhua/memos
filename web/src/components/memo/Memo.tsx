@@ -9,6 +9,18 @@ import {
   useMemoStore,
   useUserStore
 } from '@/store/hooks'
+import {
+  Archive,
+  Bookmark,
+  BookmarkMinus,
+  BookmarkPlus,
+  Edit3,
+  Globe2,
+  MoreHorizontal,
+  Share,
+  Trash,
+  Users
+} from 'lucide-react'
 
 type Props = {
   memo: Memo
@@ -36,7 +48,7 @@ const Memo: React.FC<Props> = ({ memo }) => {
     }
     editorStore.setEditMemoWithId(memo.id)
   }
-  // todo项被点击，则修改远程端内容
+  // todo项|tag|image被点击，则修改远程端内容
   const handleSingleClick = async (e: React.MouseEvent) => {
     const targetEl = e.target as HTMLElement
 
@@ -125,6 +137,80 @@ const Memo: React.FC<Props> = ({ memo }) => {
             </Link>
           }
         </div>
+        {!isVisiteMode && (
+          <div className="right">
+            {memo.visibility !== 'PRIVATE' && (
+              <div
+                onClick={() => {
+                  // handleMemoVisibilityClick(memo.visibility)
+                }}
+              >
+                {memo.visibility === 'PUBLIC' ? (
+                  <Globe2 className="icon" />
+                ) : (
+                  <Users className="icon" />
+                )}
+              </div>
+            )}
+            {memo.pinned && <Bookmark className="icon" />}
+            <span className="btn more-action-btn">
+              <MoreHorizontal className="icon" />
+            </span>
+            <div className="more-action-btns-wrapper">
+              <div className="more-action-btns-container">
+                <span
+                  className="btn"
+                  onClick={() => {
+                    // handleTogglePinMemoBtnClick
+                  }}
+                >
+                  {memo.pinned ? (
+                    <BookmarkMinus className="icon" />
+                  ) : (
+                    <BookmarkPlus className="icon" />
+                  )}
+                  {memo.pinned ? '置顶' : '取消置顶'}
+                </span>
+                <span
+                  className="btn"
+                  onClick={() => {
+                    // handleEditMemoClick
+                  }}
+                >
+                  <Edit3 className="icon" />
+                  {'编辑'}
+                </span>
+                <span
+                  className="btn"
+                  onClick={() => {
+                    // handleGenerateMemoImageBtnClick
+                  }}
+                >
+                  <Share className="icon" />
+                  {'共享'}
+                </span>
+                <span
+                  className="btn"
+                  onClick={() => {
+                    // handleArchiveMemoClick
+                  }}
+                >
+                  <Archive className="icon" />
+                  {'归档'}
+                </span>
+                <span
+                  className="btn"
+                  onClick={() => {
+                    // handleDeleteMemoClick
+                  }}
+                >
+                  <Trash className="icon" />
+                  {'删除'}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <MemoContent
         content={memo.content}

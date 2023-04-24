@@ -15,5 +15,45 @@
         color: @second8;
       }
     }
+    .right {
+      position: relative;
+      .icon {
+        cursor: pointer;
+        width: 1rem;
+        height: auto;
+      }
+      .more-action-btns-wrapper {
+        display: none;
+        position: absolute;
+        top: 1.0rem;
+        right: 0rem;
+        .more-action-btns-container {
+          width: auto;
+          min-width: 8em;
+          padding: 0.5rem;
+          background-color: @primary4;
+          border-radius: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          .btn {
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            &:hover {
+              background-color: @primary5;
+            }
+          }
+        }
+        &:hover{
+          display: flex;
+        }
+      }
+      .more-action-btn:hover + .more-action-btns-wrapper {
+        display: block;
+      }
+    }
   }
 }

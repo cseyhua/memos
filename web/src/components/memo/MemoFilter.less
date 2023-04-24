@@ -1,33 +1,37 @@
 .filter-query-container {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  font-size: 0.75rem;
+  font-family: monospace;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+
   &.hidden {
     display: none;
   }
   & > .hidden {
     display: none;
   }
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  flex-wrap: wrap;
-  padding: 0.5rem 0.5rem 0 0.5rem;
-  font-size: 0.75rem;
-  font-family: monospace;
 
   > .filter-item-container {
+    background-color: @primary5;
+    max-width: 256px;
+    padding: 0.15rem 0.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     &.hidden {
       display: none;
     }
-    max-width: 256px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    margin-right: 0.5rem;
-    cursor: pointer;
 
     > .icon-text {
       width: 1rem;
