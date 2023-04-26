@@ -3,5 +3,41 @@
   gap: 0.5rem;
   .item {
     cursor: pointer;
+    &.file {
+      position: relative;
+      .file-icon:hover + .file-opt {
+        display: flex;
+      }
+      .file-opt{
+        font-size: 0.75rem;
+        display: none;
+        position: absolute;
+        top: 1.5rem;
+        background-color: @primary4;
+        border-radius: 0.5em;
+        padding: 0.5em;
+        flex-direction: column;
+        gap: 0.5em;
+        &:hover {
+          display: flex;
+        }
+        .file-opt-item {
+          padding: 0.25em;
+          min-width: 6em;
+          border-radius: 0.5em;
+          display: flex;
+          gap: 0.25em;
+          flex-direction: row;
+          &:hover {
+            background-color: @primary5;
+          }
+        }
+      }
+    }
   }
+}
+
+.luicon {
+  width: 0.75rem;
+  height: auto;
 }

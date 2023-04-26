@@ -22,8 +22,8 @@ export default defineConfig({
         globalVars: {
           primary1: '#312520', //"#622a1d",
           primary2: '#493131', //#60281e',
-          primary3: '#665757', //'#9d2933',
-          primary4: '#392f41', //'#c3272b',
+          primary3: '#392f41', //'#9d2933',
+          primary4: '#665757', //'#c3272b',
           primary5: '#3d3b4f', //'#bf242a',
           primary6: '#c91f37',
           second1: '#f3f9f1',

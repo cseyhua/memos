@@ -36,75 +36,75 @@ const MemoList: React.FC = () => {
 
   const showMemoFilter = Boolean(
     tagQuery ||
-      (duration && duration.from < duration.to) ||
-      memoType ||
-      textQuery ||
-      shortcut ||
-      visibility
+    (duration && duration.from < duration.to) ||
+    memoType ||
+    textQuery ||
+    shortcut ||
+    visibility
   )
 
   const shownMemos = (
     showMemoFilter || shortcut
       ? memos.filter((memo) => {
-          let shouldShow = true
+        let shouldShow = true
 
-          if (shortcut) {
-            const filters = JSON.parse(shortcut.payload) as Filter[]
-            if (Array.isArray(filters)) {
-              shouldShow = checkShouldShowMemoWithFilters(memo, filters)
+        if (shortcut) {
+          const filters = JSON.parse(shortcut.payload) as Filter[]
+          if (Array.isArray(filters)) {
+            shouldShow = checkShouldShowMemoWithFilters(memo, filters)
+          }
+        }
+        if (tagQuery) {
+          const tagsSet = new Set<string>()
+          for (const t of Array.from(
+            memo.content.match(new RegExp(TAG_REG, 'g')) ?? []
+          )) {
+            const tag = t.replace(TAG_REG, '$1').trim()
+            const items = tag.split('/')
+            let temp = ''
+            for (const i of items) {
+              temp += i
+              tagsSet.add(temp)
+              temp += '/'
             }
           }
-          if (tagQuery) {
-            const tagsSet = new Set<string>()
-            for (const t of Array.from(
-              memo.content.match(new RegExp(TAG_REG, 'g')) ?? []
-            )) {
-              const tag = t.replace(TAG_REG, '$1').trim()
-              const items = tag.split('/')
-              let temp = ''
-              for (const i of items) {
-                temp += i
-                tagsSet.add(temp)
-                temp += '/'
-              }
-            }
-            if (!tagsSet.has(tagQuery)) {
-              shouldShow = false
-            }
+          if (!tagsSet.has(tagQuery)) {
+            shouldShow = false
           }
+        }
+        if (
+          duration &&
+          duration.from < duration.to &&
+          (getTimeStampByDate(memo.createdTs) < duration.from ||
+            getTimeStampByDate(memo.createdTs) > duration.to)
+        ) {
+          shouldShow = false
+        }
+        if (memoType) {
           if (
-            duration &&
-            duration.from < duration.to &&
-            (getTimeStampByDate(memo.createdTs) < duration.from ||
-              getTimeStampByDate(memo.createdTs) > duration.to)
+            memoType === 'NOT_TAGGED' &&
+            memo.content.match(TAG_REG) !== null
+          ) {
+            shouldShow = false
+          } else if (
+            memoType === 'LINKED' &&
+            memo.content.match(LINK_REG) === null
           ) {
             shouldShow = false
           }
-          if (memoType) {
-            if (
-              memoType === 'NOT_TAGGED' &&
-              memo.content.match(TAG_REG) !== null
-            ) {
-              shouldShow = false
-            } else if (
-              memoType === 'LINKED' &&
-              memo.content.match(LINK_REG) === null
-            ) {
-              shouldShow = false
-            }
-          }
-          if (
-            textQuery &&
-            !memo.content.toLowerCase().includes(textQuery.toLowerCase())
-          ) {
-            shouldShow = false
-          }
-          if (visibility) {
-            shouldShow = memo.visibility === visibility
-          }
+        }
+        if (
+          textQuery &&
+          !memo.content.toLowerCase().includes(textQuery.toLowerCase())
+        ) {
+          shouldShow = false
+        }
+        if (visibility) {
+          shouldShow = memo.visibility === visibility
+        }
 
-          return shouldShow
-        })
+        return shouldShow
+      })
       : memos
   ).filter((memo) => memo.creatorId === currentUserId)
 
@@ -141,7 +141,9 @@ const MemoList: React.FC = () => {
       {sortedMemos.map((memo) => (
         <Memo key={`${memo.id}-${memo.createdTs}`} memo={memo}></Memo>
       ))}
-      {isComplete ? <div>没有了...</div> : <div>加载更多...</div>}
+      <div className='memo-list-end'>
+        {isComplete ? <div>没有了...</div> : <div>加载更多...</div>}
+      </div>
     </div>
   )
 }
